@@ -12,7 +12,8 @@ class CategoriaController extends Controller
      */
     public function index()
     {
-        //
+        $categoria = Categoria::orderBy('id','DESC')->get():
+        return view('pages.categoria',compact('categoria'));
     }
 
     /**
@@ -28,15 +29,25 @@ class CategoriaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $categoria = null;
+        if(isset($request->id)){
+            $categoria = Categoria::find($request->id);
+        }else{
+            $categoria = new Categoria();
+        }
+        $categoria->nome = $request->nome;
+        $categoria->descricao = $request->descricao;
+        $categoria->save();
+        return redirect()->back()->with('Sucesso','Categoria cadastrado com exito');
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Categoria $categoria)
+    public function show( $categoria)
     {
-        //
+        $user = User::find($categoria)->delete();
+        return redirect()->back()->with('Sucesso','Categoria eliminado com exito');
     }
 
     /**

@@ -1,6 +1,15 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\{
+    UserController,
+    ProdutoController,
+    EntradaController,
+    SaidaController,
+    PreVendaController,
+    FornecedorController,
+    CategoriaController
+};
 
 /*
 |--------------------------------------------------------------------------
@@ -16,3 +25,12 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::resource('user', UserController::class);
+Route::resource('produto', ProdutoController::class);
+Route::resource('entradas', EntradaController::class);
+Route::resource('saida', SaidaController::class);
+Route::resource('prevenda', PreVendaController::class);
+Route::resource('fornecedor', FornecedorController::class);
+Route::resource('Categoria', CategoriaController::class);
+//Routas Simplificas para cada efeito unico

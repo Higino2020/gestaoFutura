@@ -13,6 +13,16 @@ return new class extends Migration
     {
         Schema::create('produtos', function (Blueprint $table) {
             $table->id();
+            $table->string('codigo');
+            $table->string('nome');
+            $table->string('foto')->nullable();
+            $table->enum('medicao',['Caixa','Kilograma','Unidade']);
+            $table->integer('qtdaVender')->default(0);
+            $table->integer('qtd')->default(0);;
+            $table->double('preco',9,2)->default(0);
+            $table->date('caducidade')->nullable();
+            $table->enum('perecivel',['Sim','Não']);
+            $table->foreignId('categoria_id')->constrained('categorias')->onDelete('cascade');
             $table->timestamps();
         });
     }

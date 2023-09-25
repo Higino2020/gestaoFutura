@@ -17,9 +17,16 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+            $table->enum('tipo',['Admin','Funcionario']);
             $table->rememberToken();
             $table->timestamps();
         });
+        App\Models\User::create([
+            'name' => 'geral',
+            'email' => 'admin@gmail.com',
+            'password' => bcrypt('1234geral'),
+            'tipo' => "Admin"
+        ]);
     }
 
     /**

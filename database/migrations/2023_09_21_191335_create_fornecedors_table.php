@@ -13,6 +13,9 @@ return new class extends Migration
     {
         Schema::create('fornecedors', function (Blueprint $table) {
             $table->id();
+            $table->string('nome');
+            $table->enum('tipoProduto',['Perecivel','N/Perecivel']);
+            $table->text('descricao')->nullable();
             $table->timestamps();
         });
     }

@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Fornecedor;
+use App\Models\Caixa;
 use Illuminate\Http\Request;
 
-class FornecedorController extends Controller
+class CaixaController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -28,23 +28,13 @@ class FornecedorController extends Controller
      */
     public function store(Request $request)
     {
-        $fornecedor = null;
-        if(isset($request->id)){
-            $fornecedor = Fornecedor::find($request->id);
-        }else{
-            $fornecedor = new Fornecedor();
-        }
-        $fornecedor->nome = $request->nome;
-        $fornecedor->tipoProduto = $request->tipoProduto;
-        $fornecedor->descricao = $request->descricao;
-        $fornecedor->save();
-        return redirect()->back()->with('Sucesso','fornecedor cadastrado com exito');
+        //
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Fornecedor $fornecedor)
+    public function show(Caixa $caixa)
     {
         //
     }
@@ -52,7 +42,7 @@ class FornecedorController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Fornecedor $fornecedor)
+    public function edit(Caixa $caixa)
     {
         //
     }
@@ -60,7 +50,7 @@ class FornecedorController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Fornecedor $fornecedor)
+    public function update(Request $request, Caixa $caixa)
     {
         //
     }
@@ -68,7 +58,7 @@ class FornecedorController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Fornecedor $fornecedor)
+    public function destroy(Caixa $caixa)
     {
         //
     }

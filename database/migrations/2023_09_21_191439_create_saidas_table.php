@@ -13,6 +13,11 @@ return new class extends Migration
     {
         Schema::create('saidas', function (Blueprint $table) {
             $table->id();
+            $table->integer('qtd');
+            $table->double('total',9,2);
+            $table->date('data_saida');
+            $table->text('descricao')->nullable();
+            $table->foreignId('produto_id')->constrained('produtos')->onDelete('cascade');
             $table->timestamps();
         });
     }

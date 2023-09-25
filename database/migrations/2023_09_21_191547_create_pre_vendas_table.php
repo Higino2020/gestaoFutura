@@ -13,6 +13,9 @@ return new class extends Migration
     {
         Schema::create('pre_vendas', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('produto_id')->constrained('produtos')->onDelete('cascade');
+            $table->integer('qtd');
+            $table->double('total',9,2);
             $table->timestamps();
         });
     }
