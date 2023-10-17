@@ -1,6 +1,6 @@
 <?php
 
-qtdspace App\Http\Controllers;
+namespace App\Http\Controllers;
 
 use App\Models\Entrada;
 use App\Models\Produto;

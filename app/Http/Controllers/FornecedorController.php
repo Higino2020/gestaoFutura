@@ -12,7 +12,8 @@ class FornecedorController extends Controller
      */
     public function index()
     {
-        //
+        $fornecedor = Fornecedor::orderBy('id','DESC')->get();
+        return view('',compact('fornecedor'));
     }
 
     /**
@@ -44,9 +45,10 @@ class FornecedorController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Fornecedor $fornecedor)
+    public function show($fornecedor)
     {
-        //
+        Fornecedor::find($fornecedor)->delete();
+        return redirect()->back()->with('Sucesso','fornecedor eliminado com exito');
     }
 
     /**

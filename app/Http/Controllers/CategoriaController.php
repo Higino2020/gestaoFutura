@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Categoria;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class CategoriaController extends Controller
@@ -12,7 +13,7 @@ class CategoriaController extends Controller
      */
     public function index()
     {
-        $categoria = Categoria::orderBy('id','DESC')->get():
+        $categoria = Categoria::orderBy('id','DESC')->get();
         return view('pages.categoria',compact('categoria'));
     }
 

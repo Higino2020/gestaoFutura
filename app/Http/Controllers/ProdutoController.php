@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Produto;
 use Illuminate\Http\Request;
-
+use Plank\Mediable\Facades\MediaUploader;
 class ProdutoController extends Controller
 {
     /**
@@ -12,7 +12,8 @@ class ProdutoController extends Controller
      */
     public function index()
     {
-        //
+        $produto = Produto::orderBy('id','DESC')->get();
+        return view('',compact('produto'));
     }
 
     /**
@@ -28,38 +29,48 @@ class ProdutoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $produto = null;
+        if(isset($request->id)){
+            $produto = Produto::find($request->id);
+        }else{
+            $produto = new Produto();
+        }
+        if (request()->hasFile('foto')) {
+            $media = MediaUploader::fromSource(request()->file('foto'))
+                ->toDirectory('produto')->onDuplicateIncrement()
+                ->useHashForFilename()
+                ->setAllowedAggregateTypes(['image'])->upload();
+            $produto->foto = $media->basename;
+        }
+        $produto->codigo = $request->codigo;
+        $produto->nome = $request->nome;
+        $produto->medicao = $request->medicao;
+        $produto->qtdaVender = $request->qtdaVender;
+        $produto->qtd = $request->qtd;
+        $produto->preco = $request->preco;
+        $produto->caducidade = $request->caducidade;
+        $produto->perecivel = $request->perecivel;
+        $produto->categoria_id = $request->categoria_id;
+
+        $produto->save();
+        return redirect()->back()->with('Sucesso','Produto cadastrado com exito');
+
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Produto $produto)
+    public function show( $produto)
     {
-        //
+        $produto  = Produto::find($produto);
+        return view('',compact('produto'));
+    }
+    public function apagar( $produto)
+    {
+        $produto  = Produto::find($produto)->delete();
+        return redirect()->back()->with('Sucesso','Produto Eliminado com exito');
+
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Produto $produto)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Produto $produto)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Produto $produto)
-    {
-        //
-    }
+    
 }
