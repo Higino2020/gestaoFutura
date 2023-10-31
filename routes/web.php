@@ -34,3 +34,6 @@ Route::resource('prevenda', PreVendaController::class);
 Route::resource('fornecedor', FornecedorController::class);
 Route::resource('Categoria', CategoriaController::class);
 //Routas Simplificas para cada efeito unico
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

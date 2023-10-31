@@ -18,7 +18,7 @@ return new class extends Migration
             $table->double('total',9,2);
             $table->date('data_entrada');
             $table->text('descricao')->nullable();
-            $table->foreignId('user_id')->constrained('users')->onDelete('set null');
+            $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
             $table->foreignId('produto_id')->constrained('produtos')->onDelete('cascade');
             $table->foreignId('fornecedor_id')->constrained('fornecedors')->onDelete('cascade');
             $table->timestamps();
