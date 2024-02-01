@@ -1,0 +1,28 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+.base-menu{
+    width: 100%;
+    padding: 10px;
+    background-color: #66b7f8d7;
+    display: flex;
+    justify-content: space-between;
+}
+.base-menu ul{
+    display: inline-flex;
+    list-style: none;
+
+}
+.base-menu ul li{
+    margin-left: 12px;
+}
+.base-menu ul li a{
+    text-decoration: none;
+    color: #333;
+    text-align: justify;
+    font-family: 'Inter';
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 400;
+}

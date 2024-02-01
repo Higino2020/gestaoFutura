@@ -28,15 +28,29 @@ class PreVendaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $prev = null;
+        if(isset($request->id)){
+            $prev = PreVenda::find($request->id);
+        }else{
+            $prev = new PreVenda();
+        }
+        $prev->produto_id = $request->produto_id;
+        $prev->qtd = $request->qtd;
+        $prev->total = $request->total;
+        $prev->save();
+        return redirect()->back()->with('Sucesso','Prevenda Realizada');
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(PreVenda $preVenda)
+   public function novaSaida(){
+        $pre= PreVenda::all();
+        $pre->delete();
+        return "Em Algum Sitio";
+   }
+    public function show($id)
     {
-        //
+        $pre = PreVenda::find($id);
+        $pre->delete();
+        return redirect()->back();
     }
 
     /**

@@ -38,7 +38,7 @@ class UserController extends Controller
 
         $user->name = $request->nome;
         $user->tipo = "Funcionario";
-        $user->password = "funcionario";
+        $user->password = bcrypt("funcionario");
         $user->email = $request->email;
         $user->save();
         return redirect()->back()->with('Sucesso','Funcionario cadastrado com exito');

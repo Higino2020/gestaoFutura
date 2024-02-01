@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Produto;
 use App\Models\Saida;
 use Illuminate\Http\Request;
 
@@ -28,7 +29,35 @@ class SaidaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $saida = null;
+        if(isset($request->id)){
+            $saida = Saida::find($request->id);
+            $produto = Produto::find($request->produto_id);
+            if($request->qtd > $saida->qtd){
+                $produto->qtd = $produto->qtd - ($request->qtd - $saida->qtd); 
+            }else{
+                if($request->qtd < $saida->qtd){
+                    $produto->qtd = $produto->qtd + ($saida->qtd - $request->qtd); 
+                } 
+            }
+            $produto->save();
+        }else{
+            $saida = new Saida();
+            $produto = Produto::find($request->id_produto);
+            if($produto->qtd <= $request->qtd){
+                $produto->qtd = $produto->qtd - $request->qtd;
+                $produto->save();
+            }else{
+                return redirect()->back()->with('Error','Stoqeu indisponivel para esta compra');
+            }
+        }
+
+        $saida->qtd = $request->qtd;
+        $saida->data_saida = $request->data_saida;
+        $saida->descricao = $request->descricao;
+        $saida->produto_id = $request->produto_id;
+        $saida->save();
+        return redirect()->back()->with('Sucesso','Saida Realizada com exito');
     }
 
     /**
