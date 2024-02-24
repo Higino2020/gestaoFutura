@@ -13,7 +13,7 @@ class UserController extends Controller
     public function index()
     {
         $user = User::where('tipo','<>','Admin')->get();
-        return view('pages.user',compact('user'));
+        return view('admin.utilizador',compact('user'));
     }
 
     /**
@@ -30,18 +30,21 @@ class UserController extends Controller
     public function store(Request $request)
     {
         $user = null;
+        $sms ="";
         if(isset($request->id)){
             $user = User::find($request->id);
+            $sms = 'Utilizador actualizado com exito';
         }else{
             $user = new User();
+            $sms = "Utilizador cadastrado com exito";
         }
 
         $user->name = $request->nome;
-        $user->tipo = "Funcionario";
+        $user->tipo = $request->tipo;
         $user->password = bcrypt("funcionario");
         $user->email = $request->email;
         $user->save();
-        return redirect()->back()->with('Sucesso','Funcionario cadastrado com exito');
+        return redirect()->back()->with('Sucesso',$sms);
     }
 
     /**
@@ -50,7 +53,7 @@ class UserController extends Controller
     public function show($user)
     {
         $user = User::find($user)->delete();
-        return redirect()->back()->with('Sucesso','Funcionario eliminado com exito');
+        return redirect()->back()->with('Sucesso','Utilizador eliminado com exito');
     }
 
     /**

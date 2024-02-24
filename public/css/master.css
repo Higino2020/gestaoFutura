@@ -26,3 +26,133 @@
     font-style: normal;
     font-weight: 400;
 }
+
+.baseMenu{
+    padding-top: 12px;
+    display: flex;
+    margin-bottom: 45px;
+}
+.baseMenu a{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    color: #797979;
+    font-family: Arial, Helvetica, sans-serif;
+    width: 200px;
+    height: 100px;
+    border-radius: 8px;
+    margin-right: 20px;
+    border: 1px solid rgba(105, 105, 105, 0.329);
+}
+.produtoBase{
+    height: 70vh;
+}
+.inputs{
+    width: 100%;
+    border: 1px solid #a1a0a056;
+    border-radius: 8px;
+    padding: 5px 10px ;
+
+}
+.inputs input{
+    width: 90%;
+    border: 1px solid #a1a0a000;
+    outline: none;
+}
+.produtos{
+    width: 100%;
+    padding: 5px;
+    margin-top: 40px;
+    height: 100%;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+.product{
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    border: 1px solid #6969694b;
+    border-radius: 8px;
+    padding: 5px;
+}
+.img{
+    font-size: 60px;
+    text-align: center;
+}
+.descricao h4{
+    font-size: 12px ;
+    font-weight: 900px;
+    color: #353434c4;
+
+}
+.descricao h5{
+    font-size: 10px ;
+    font-weight: 900px;
+    color: rgba(53, 52, 52, 0.767);
+
+}
+
+.showTable{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.operacao{
+    padding-top: 12px;
+    display: flex;
+    justify-content: space-between;
+}
+.operacao a, .operacao button{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    color: #797979;
+    font-family: Arial, Helvetica, sans-serif;
+    width: 180px;
+    height: 80px;
+    border-radius: 8px;
+    margin-right: 20px;
+    border: 1px solid rgba(105, 105, 105, 0.329);
+    font-size: 35px;
+    color: white;
+}
+.baseTable{
+    height: 60vh;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.total{
+    width: 100%;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border: 1px solid dimgray;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    padding: 12px 20px;
+    font-size: 30px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: 900;
+}
+.basePagamento{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+.basePagamento a{
+    width: 100%;
+    padding: 5px;
+    margin-top: 20px;
+    border-radius: 8px;
+    border: none;
+    font-size: 12px;
+    font-family: Arial, Helvetica, sans-serif;
+    cursor: pointer;
+    background-color: #dbdbdb;
+    text-align: center;
+}

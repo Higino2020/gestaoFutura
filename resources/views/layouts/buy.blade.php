@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="{{asset('css/master.css')}}">
 </head>
 <body>
-    <div class="container-xxl">
+    {{-- <div class="container-xxl">
         <div class="base-menu">
             <div class="logo">
                 <h4>Logo</h4>
@@ -24,8 +24,10 @@
                 </ul>
             </div>
         </div>
-    </div>
+    </div> --}}
+    @yield('factura')
     <script src="{{asset('js/jquery.js')}}"></script>
     <script src="{{asset('asset/bootstrap/js/bootstrap.js')}}"></script>
+    @stack('js')
 </body>
 </html>

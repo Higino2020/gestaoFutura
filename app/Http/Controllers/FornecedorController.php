@@ -13,7 +13,7 @@ class FornecedorController extends Controller
     public function index()
     {
         $fornecedor = Fornecedor::orderBy('id','DESC')->get();
-        return view('',compact('fornecedor'));
+        return view('admin.fornecedor',compact('fornecedor'));
     }
 
     /**
@@ -30,16 +30,19 @@ class FornecedorController extends Controller
     public function store(Request $request)
     {
         $fornecedor = null;
+        $sms ="";
         if(isset($request->id)){
             $fornecedor = Fornecedor::find($request->id);
+            $sms = 'fornecedor actualizado com exito';
         }else{
             $fornecedor = new Fornecedor();
+            $sms = 'fornecedor cadastrado com exito';
         }
         $fornecedor->nome = $request->nome;
         $fornecedor->tipoProduto = $request->tipoProduto;
         $fornecedor->descricao = $request->descricao;
         $fornecedor->save();
-        return redirect()->back()->with('Sucesso','fornecedor cadastrado com exito');
+        return redirect()->back()->with('Sucesso',$sms);
     }
 
     /**

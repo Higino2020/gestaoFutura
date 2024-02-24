@@ -13,7 +13,7 @@ class ProdutoController extends Controller
     public function index()
     {
         $produto = Produto::orderBy('id','DESC')->get();
-        return view('',compact('produto'));
+        return view('admin.produtos',compact('produto'));
     }
 
     /**
@@ -30,10 +30,18 @@ class ProdutoController extends Controller
     public function store(Request $request)
     {
         $produto = null;
+        $sms = "";
+        $verify = Produto::where('codigo',$request->codigo)->first();
+        if($verify != null){
+            return redirect()->back()->with('Error', "Este codigo já se encontra em uso");
+        }
+
         if(isset($request->id)){
             $produto = Produto::find($request->id);
+            $sms = 'Produto actualizado com exito';
         }else{
             $produto = new Produto();
+            $sms = 'Produto cadastrado com exito';
         }
         if (request()->hasFile('foto')) {
             $media = MediaUploader::fromSource(request()->file('foto'))
@@ -45,7 +53,7 @@ class ProdutoController extends Controller
         $produto->codigo = $request->codigo;
         $produto->nome = $request->nome;
         $produto->medicao = $request->medicao;
-        $produto->qtdaVender = $request->qtdaVender;
+        $produto->qtdaVender = 0;
         $produto->qtd = $request->qtd;
         $produto->preco = $request->preco;
         $produto->caducidade = $request->caducidade;
@@ -53,7 +61,7 @@ class ProdutoController extends Controller
         $produto->categoria_id = $request->categoria_id;
 
         $produto->save();
-        return redirect()->back()->with('Sucesso','Produto cadastrado com exito');
+        return redirect()->back()->with('Sucesso', $sms);
 
     }
 
